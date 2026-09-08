@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, interactive-widget=overlays-content"
+    >
+
+    <title>Nous</title>
+
+    <link rel="stylesheet" href="app.css">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+
+<body>
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar" id="sidebar">
+
+        <!-- SIDEBAR HEADER -->
+
+        <div class="sidebar-header">
+
+            <!-- OPEN STATE -->
+
+            <div class="nous-brand">
+                Nous
+            </div>
+
+
+            <!-- COLLAPSED STATE -->
+
+            <button
+                class="collapsed-brand"
+                id="collapsedBrand"
+                aria-label="Open sidebar"
+                title="Open sidebar"
+            >
+                <img src="assets/favicon.svg" alt="Nous">
+
+                <span class="collapsed-open-icon">
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M9 6l6 6-6 6"></path>
+                    </svg>
+
+                </span>
+
+            </button>
+
+
+            <div class="sidebar-header-spacer"></div>
+
+
+            <div class="sidebar-header-actions">
+
+                <!-- SEARCH -->
+
+                <button
+                    class="sidebar-icon-btn"
+                    id="searchBtn"
+                    aria-label="Search"
+                    title="Search"
+                >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="11" cy="11" r="6.5"></circle>
+                        <path d="M16 16l5 5"></path>
+                    </svg>
+                </button>
+
+
+                <!-- CLOSE -->
+
+                <button
+                    class="sidebar-icon-btn"
+                    id="collapseBtn"
+                    aria-label="Close sidebar"
+                    title="Close sidebar"
+                >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M15 6l-6 6 6 6"></path>
+                    </svg>
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= NAVIGATION ================= -->
+
+        <nav class="main-nav">
+
+            <!-- NEW CHAT -->
+
+            <button
+                class="nav-item new-chat-btn"
+                id="newChatBtn"
+            >
+
+                <span class="nav-icon">
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 5v14"></path>
+                        <path d="M5 12h14"></path>
+                    </svg>
+
+                </span>
+
+                <span class="nav-label">
+                    New Chat
+                </span>
+
+            </button>
+
+
+            <!-- EXTENSIONS -->
+
+            <button class="nav-item">
+
+                <span class="nav-icon">
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+                        <path d="
+                            M17 22H5
+                            A3 3 0 0 1 2 19
+                            V9
+                            A3 3 0 0 1 5 6
+                            H6
+                            A4 4 0 0 1 13.3 3.82
+                            A3.86 3.86 0 0 1 14 6
+                            H17
+                            A1 1 0 0 1 18 7
+                            V10
+                            A4 4 0 0 1 20.18 17.3
+                            A3.86 3.86 0 0 1 18 18
+                            V21
+                            A1 1 0 0 1 17 22Z
+                        "></path>
+                    </svg>
+
+                </span>
+
+                <span class="nav-label">
+                    Extensions
+                </span>
+
+            </button>
+
+
+            <!-- PROJECTS -->
+
+            <button class="nav-item">
+
+                <span class="nav-icon">
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M3 7h6l2 2h10v10H3z"></path>
+                        <path d="M3 7V5h7l2 2"></path>
+                    </svg>
+
+                </span>
+
+                <span class="nav-label">
+                    Projects
+                </span>
+
+            </button>
+
+
+            <!-- RECENT -->
+
+            <button
+                class="nav-item recent-nav-btn"
+                id="openRecentFromSidebar"
+            >
+
+                <span class="nav-icon recent-icon">
+
+                    <svg viewBox="0 0 20 20" aria-hidden="true">
+
+                        <path d="
+                            M4.5 4.5h11
+                            A2.5 2.5 0 0 1 18 7
+                            v5.5
+                            a2.5 2.5 0 0 1-2.5 2.5
+                            H9
+                            l-4.5 3
+                            v-3.2
+                            A2.5 2.5 0 0 1 2 12.3
+                            V7
+                            A2.5 2.5 0 0 1 4.5 4.5Z
+                        "></path>
+
+                    </svg>
+
+                </span>
+
+                <span class="nav-label">
+                    Recent
+                </span>
+
+            </button>
+
+        </nav>
+
+
+        <!-- ================= RECENT CONTENT ================= -->
+
+        <section class="recent-section">
+
+            <div class="history-list">
+
+                <button class="history-item">
+                    Design layout iterations
+                </button>
+
+                <button class="history-item">
+                    Fixing flexbox overflow bug
+                </button>
+
+                <button class="history-item">
+                    Building Nous AI
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= SETTINGS ================= -->
+
+        <div class="sidebar-footer">
+
+            <button class="nav-item settings-btn">
+
+                <span class="nav-icon">
+
+                    <svg
+                        viewBox="0 0 48 48"
+                        aria-hidden="true"
+                    >
+
+                        <path d="
+                            M24 4
+                            C22.423103 4 20.902664 4.1994284 19.451172 4.5371094
+                            A1.50015 1.50015 0 0 0 18.300781 5.8359375
+                            L17.982422 8.7382812
+                            C17.878304 9.6893592 17.328913 10.530853 16.5 11.009766
+                            C15.672739 11.487724 14.66862 11.540667 13.792969 11.15625
+                            L13.791016 11.15625
+                            L11.125 9.9824219
+                            A1.50015 1.50015 0 0 0 9.4257812 10.330078
+                            C7.3532865 12.539588 5.7626807 15.215064 4.859375 18.201172
+                            A1.50015 1.50015 0 0 0 5.4082031 19.845703
+                            L7.7734375 21.580078
+                            C8.5457929 22.147918 9 23.042801 9 24
+                            C9 24.95771 8.5458041 25.853342 7.7734375 26.419922
+                            L5.4082031 28.152344
+                            A1.50015 1.50015 0 0 0 4.859375 29.796875
+                            C5.7625845 32.782665 7.3519262 35.460112 9.4257812 37.669922
+                            A1.50015 1.50015 0 0 0 11.125 38.015625
+                            L13.791016 36.841797
+                            C14.667094 36.456509 15.672169 36.511947 16.5 36.990234
+                            C17.328913 37.469147 17.878304 38.310641 17.982422 39.261719
+                            L18.300781 42.164062
+                            A1.50015 1.50015 0 0 0 19.449219 43.460938
+                            C20.901371 43.799844 22.423103 44 24 44
+                            C25.576897 44 27.097336 43.800572 28.548828 43.462891
+                            A1.50015 1.50015 0 0 0 29.699219 42.164062
+                            L30.017578 39.261719
+                            C30.121696 38.310641 30.671087 37.469147 31.5 36.990234
+                            C32.327261 36.512276 33.33138 36.45738 34.207031 36.841797
+                            L36.875 38.015625
+                            A1.50015 1.50015 0 0 0 38.574219 37.669922
+                            C40.646713 35.460412 42.237319 32.782983 43.140625 29.796875
+                            A1.50015 1.50015 0 0 0 42.591797 28.152344
+                            L40.226562 26.419922
+                            C39.454197 25.853342 39 24.95771 39 24
+                            C39 23.04229 39.454197 22.146658 40.226562 21.580078
+                            L42.591797 19.847656
+                            A1.50015 1.50015 0 0 0 43.140625 18.203125
+                            C42.237319 15.217017 40.646713 12.539588 38.574219 10.330078
+                            A1.50015 1.50015 0 0 0 36.875 9.984375
+                            L34.207031 11.158203
+                            C33.33138 11.54262 32.327261 11.487724 31.5 11.009766
+                            C30.671087 10.530853 30.121696 9.6893592 30.017578 8.7382812
+                            L29.699219 5.8359375
+                            A1.50015 1.50015 0 0 0 28.550781 4.5390625
+                            C27.098629 4.2001555 25.576897 4 24 4z
+
+                            M24 7
+                            C24.974302 7 25.90992 7.1748796 26.847656 7.3398438
+                            L27.035156 9.0644531
+                            C27.243038 10.963375 28.346913 12.652335 30 13.607422
+                            C31.654169 14.563134 33.668094 14.673009 35.416016 13.904297
+                            L37.001953 13.207031
+                            C38.219788 14.669402 39.183985 16.321182 39.857422 18.130859
+                            L38.451172 19.162109
+                            C36.911538 20.291529 36 22.08971 36 24
+                            C36 25.91029 36.911538 27.708471 38.451172 28.837891
+                            L39.857422 29.869141
+                            C39.183985 31.678818 38.219788 33.330598 37.001953 34.792969
+                            L35.416016 34.095703
+                            C33.668094 33.326991 31.654169 33.436866 30 34.392578
+                            C28.346913 35.347665 27.243038 37.036625 27.035156 38.935547
+                            L26.847656 40.660156
+                            C25.910002 40.82466 24.973817 41 24 41
+                            C23.025698 41 22.09008 40.82512 21.152344 40.660156
+                            L20.964844 38.935547
+                            C20.756962 37.036625 19.653087 35.347665 18 34.392578
+                            C16.345831 33.436866 14.331906 33.326991 12.583984 34.095703
+                            L10.998047 34.792969
+                            C9.7799772 33.330806 8.8159425 31.678964 8.1425781 29.869141
+                            L9.5488281 28.837891
+                            C11.088462 27.708471 12 25.91029 12 24
+                            C12 22.08971 11.087719 20.290363 9.5488281 19.160156
+                            L8.1425781 18.128906
+                            C8.8163325 16.318532 9.7814501 14.667839 11 13.205078
+                            L12.583984 13.902344
+                            C14.331906 14.671056 16.345831 14.563134 18 13.607422
+                            C19.653087 12.652335 20.756962 10.963375 20.964844 9.0644531
+                            L21.152344 7.3398438
+                            C22.089998 7.1753403 23.026183 7 24 7z
+
+                            M24 16
+                            C19.599487 16 16 19.59949 16 24
+                            C16 28.40051 19.599487 32 24 32
+                            C28.400513 32 32 28.40051 32 24
+                            C32 19.59949 28.400513 16 24 16z
+
+                            M24 19
+                            C26.779194 19 29 21.220808 29 24
+                            C29 26.779192 26.779194 29 24 29
+                            C21.220806 29 19 26.779192 19 24
+                            C19 21.220808 21.220806 19 24 19z
+                        "></path>
+
+                    </svg>
+
+                </span>
+
+                <span class="nav-label">
+                    Settings
+                </span>
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= RECENT OVERLAY ================= -->
+
+    <div
+        class="recent-popup"
+        id="recentPopup"
+        aria-hidden="true"
+    >
+
+        <div class="recent-popup-header">
+
+            <span>
+                Recent
+            </span>
+
+            <button
+                class="recent-popup-close"
+                id="recentPopupClose"
+                aria-label="Close recent"
+                title="Close"
+            >
+
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M6 6l12 12M18 6L6 18"></path>
+                </svg>
+
+            </button>
+
+        </div>
+
+
+        <div class="recent-popup-list">
+
+            <button>
+                Design layout iterations
+            </button>
+
+            <button>
+                Fixing flexbox overflow bug
+            </button>
+
+            <button>
+                Building Nous AI
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main-container">
+
+        <!-- MOBILE HEADER -->
+
+        <header class="mobile-header">
+
+            <button
+                class="mobile-circle-btn"
+                id="mobileMenuBtn"
+                aria-label="Open menu"
+            >
+
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M4 7h16M4 12h16M4 17h16"></path>
+                </svg>
+
+            </button>
+
+
+            <div class="mobile-header-spacer"></div>
+
+        </header>
+
+
+        <!-- CHAT AREA -->
+
+        <section
+            class="chat-area"
+            id="chatArea"
+        >
+
+            <div
+                class="welcome-section"
+                id="welcomeSection"
+            >
+
+                <h1 class="welcome-title">
+                    How can I help you today?
+                </h1>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= TASKBAR ================= -->
+
+        <div
+            class="chat-bottom"
+            id="chatBottom"
+        >
+
+            <div class="input-wrapper">
+
+                <textarea
+                    class="chat-textarea"
+                    id="chatInput"
+                    rows="1"
+                    placeholder="Ask anything..."
+                    aria-label="Message Nous"
+                ></textarea>
+
+
+                <div class="input-actions">
+
+                    <!-- ADD -->
+
+                    <div class="toolbar-buttons">
+
+                        <button
+                            class="action-btn mobile-action-circle"
+                            id="uploadBtn"
+                            title="Add"
+                            aria-label="Add"
+                        >
+
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
+                            </svg>
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="right-buttons">
+
+                        <!-- MICROPHONE -->
+
+                        <button
+                            class="action-btn mic-btn"
+                            id="micBtn"
+                            title="Voice"
+                            aria-label="Voice"
+                        >
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                            >
+
+                                <rect
+                                    x="9"
+                                    y="2"
+                                    width="6"
+                                    height="12"
+                                    rx="3"
+                                ></rect>
+
+                                <path d="M5 10a7 7 0 0 0 14 0"></path>
+
+                                <line
+                                    x1="12"
+                                    y1="17"
+                                    x2="12"
+                                    y2="22"
+                                ></line>
+
+                                <line
+                                    x1="8"
+                                    y1="22"
+                                    x2="16"
+                                    y2="22"
+                                ></line>
+
+                            </svg>
+
+                        </button>
+
+
+                        <!-- SEND -->
+
+                        <button
+                            class="send-btn"
+                            id="sendBtn"
+                            title="Send"
+                            aria-label="Send"
+                        >
+
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M12 19V5"></path>
+                                <path d="M5 12l7-7 7 7"></path>
+                            </svg>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <p class="disclaimer">
+                Nous can make mistakes. Verify important information.
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= MOBILE OVERLAY ================= -->
+
+    <div
+        class="sidebar-overlay"
+        id="sidebarOverlay"
+    ></div>
+
+
+    <script src="app.js"></script>
+
+</body>
+</html>
