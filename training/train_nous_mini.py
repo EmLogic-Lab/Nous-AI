@@ -33,6 +33,8 @@ class Config:
     )
     data_path: str = "input.txt"
     ckpt_path: str = "nous_mini.pt"
+    # If this file exists, continue from that brain instead of random weights.
+    resume_path: str = "nous_mini_resume.pt"
 
     # Small on purpose. Quality comes later by growing these numbers.
     block_size: int = 128
@@ -42,10 +44,11 @@ class Config:
     dropout: float = 0.1
 
     batch_size: int = 32
-    max_steps: int = 3000
+    max_steps: int = 1500
     eval_every: int = 250
     eval_batches: int = 20
     learning_rate: float = 3e-3
+    resume_learning_rate: float = 8e-4
     weight_decay: float = 0.1
 
     generate_tokens: int = 400
@@ -222,7 +225,34 @@ def main() -> None:
     print(f"Device: {device}")
 
     text = download_data(cfg)
-    chars, encode, decode = build_tokenizer(text)
+
+    resumed = False
+    resume_ckpt = None
+    if os.path.exists(cfg.resume_path):
+        resume_ckpt = torch.load(cfg.resume_path, map_location=device, weights_only=False)
+        chars = resume_ckpt["chars"]
+        extra = sorted(set(text) - set(chars))
+        if extra:
+            raise SystemExit(
+                "New text has characters the old model never saw: "
+                + repr("".join(extra))
+                + ". Add those letters to a from-scratch run, or remove them from the text."
+            )
+        stoi = {ch: i for i, ch in enumerate(chars)}
+        itos = {i: ch for i, ch in enumerate(chars)}
+
+        def encode(s: str) -> list[int]:
+            return [stoi[c] for c in s]
+
+        def decode(ids: list[int]) -> str:
+            return "".join(itos[i] for i in ids)
+
+        resumed = True
+        print(f"Resuming from {cfg.resume_path}")
+    else:
+        chars, encode, decode = build_tokenizer(text)
+        print("No resume file found. Starting from random weights.")
+
     vocab_size = len(chars)
     print(f"Vocab size: {vocab_size}")
 
@@ -231,16 +261,21 @@ def main() -> None:
     splits = {"train": train_data, "val": val_data}
 
     model = NousMini(cfg, vocab_size).to(device)
+    if resumed:
+        model.load_state_dict(resume_ckpt["model"])
+        print(f"Loaded previous val_loss={resume_ckpt.get('val_loss', 'unknown')}")
+
     print(f"Parameters: {count_params(model):,}")
 
+    lr = cfg.resume_learning_rate if resumed else cfg.learning_rate
     optimizer = torch.optim.AdamW(
-        model.parameters(), lr=cfg.learning_rate, weight_decay=cfg.weight_decay
+        model.parameters(), lr=lr, weight_decay=cfg.weight_decay
     )
+    print(f"Learning rate: {lr}")
 
-    # Random-weight sample so you can see the "before" garbage.
     start = torch.zeros((1, 1), dtype=torch.long, device=device)
     before = decode(model.generate(start, 200, temperature=1.0)[0].tolist())
-    print("\n===== BEFORE TRAINING =====\n")
+    print("\n===== BEFORE THIS RUN =====\n")
     print(before)
     print("\n===== TRAINING =====\n")
 
