@@ -1,0 +1,17 @@
+# .gitignore file contents
+
+
+__pycache__/
+*.pyc
+
+input.txt
+*.pt
+*.pth
+*.bin
+*.ckpt
+
+.DS_Store
+Thumbs.db
+
+docs/Git-and-GitHub-for-Young-Coders.pdf
+docs/Nous AI (Business Plan).pdf
