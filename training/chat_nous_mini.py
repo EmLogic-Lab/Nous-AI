@@ -52,11 +52,10 @@ def main() -> None:
         idx = torch.tensor([[stoi[c] for c in prompt]], dtype=torch.long, device=device)
         out = model.generate(idx, TOKENS, temperature=TEMPERATURE)[0].tolist()
         text = "".join(itos[i] for i in out)
-        # Show prompt plus the first reply only.
-        cut = text.split("User:", 2)
-        shown = cut[0] if len(cut) == 1 else cut[0]
+        extra = text[len(prompt):]
+        extra = extra.split("\nUser:")[0]
         print("=" * 40)
-        print(shown.strip())
+        print(prompt + extra.strip())
         print()
 
 
