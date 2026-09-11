@@ -43,17 +43,17 @@ app.mount(
 
 @app.get("/")
 async def serve_frontend():
-    return FileResponse(FRONTEND_DIR / "app.html")
+    return FileResponse(FRONTEND_DIR / "index.html")
 
 
-@app.get("/app.css")
+@app.get("/style.css")
 async def serve_css():
-    return FileResponse(FRONTEND_DIR / "app.css")
+    return FileResponse(FRONTEND_DIR / "style.css")
 
 
-@app.get("/app.js")
+@app.get("/script.js")
 async def serve_javascript():
-    return FileResponse(FRONTEND_DIR / "app.js")
+    return FileResponse(FRONTEND_DIR / "script.js")
 
 
 # =========================================
