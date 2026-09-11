@@ -348,7 +348,7 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
 
             const response =
-                await fetch("/api/chat", {
+                await fetch("https://nous-ai-backend-f4lc.onrender.com/api/chat", {
 
                     method: "POST",
 
