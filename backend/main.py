@@ -1,11 +1,8 @@
-from pathlib import Path
 from typing import Dict
 
 from fastapi import FastAPI
-from fastapi.responses import FileResponse
-from fastapi.staticfiles import StaticFiles
-from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
 
 
 app = FastAPI(
@@ -15,16 +12,15 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://nous-ai-8jy4.onrender.com"],
+    allow_origins=[
+        "https://nous-ai-8jy4.onrender.com",
+        "http://127.0.0.1:5500",
+        "http://localhost:5500",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-
-BASE_DIR = Path(__file__).resolve().parent.parent
-FRONTEND_DIR = BASE_DIR / "frontend"
-ASSETS_DIR = FRONTEND_DIR / "assets"
 
 
 # =========================================
@@ -33,36 +29,6 @@ ASSETS_DIR = FRONTEND_DIR / "assets"
 
 class ChatRequest(BaseModel):
     message: str
-
-
-# =========================================
-# STATIC FILES
-# =========================================
-
-app.mount(
-    "/assets",
-    StaticFiles(directory=ASSETS_DIR),
-    name="assets",
-)
-
-
-# =========================================
-# FRONTEND
-# =========================================
-
-@app.get("/")
-async def serve_frontend():
-    return FileResponse(FRONTEND_DIR / "index.html")
-
-
-@app.get("/style.css")
-async def serve_css():
-    return FileResponse(FRONTEND_DIR / "style.css")
-
-
-@app.get("/script.js")
-async def serve_javascript():
-    return FileResponse(FRONTEND_DIR / "script.js")
 
 
 # =========================================
