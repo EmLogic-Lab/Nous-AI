@@ -1025,11 +1025,6 @@ body.sidebar-collapsed
 
 .assistant-message {
 
-    width: 100%;
-
-    padding:
-        4px 18px;
-
     color: var(--text);
 
     text-align: left;
@@ -1041,6 +1036,22 @@ body.sidebar-collapsed
     border-radius: 0;
 
     box-shadow: none;
+
+    opacity: 0;
+
+    transform: translateY(6px);
+
+    transition:
+        opacity .16s ease-out,
+        transform .16s ease-out;
+}
+
+
+.assistant-message.spawned {
+
+    opacity: 1;
+
+    transform: translateY(0);
 }
 
 /* =========================================

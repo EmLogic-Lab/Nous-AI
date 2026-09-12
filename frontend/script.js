@@ -394,6 +394,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 assistantMessage
             );
 
+            requestAnimationFrame(() => {
+
+                assistantMessage.classList.add(
+                    "spawned"
+                );
+
+            });
 
             chatArea.scrollTop =
                 chatArea.scrollHeight;
