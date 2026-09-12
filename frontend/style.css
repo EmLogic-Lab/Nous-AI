@@ -453,10 +453,6 @@ svg {
 
     flex: 1;
 
-    display: flex;
-
-    flex-direction: column;
-
     background:
         radial-gradient(
             circle at 90% 0%,
@@ -472,15 +468,27 @@ svg {
 
 .chat-area {
 
-    flex: 1;
+    position: absolute;
 
-    min-height: 0;
+    inset: 0;
 
     overflow-y: auto;
 
     overscroll-behavior: contain;
 
     -webkit-overflow-scrolling: touch;
+
+    padding-top: 68px;
+
+    padding-bottom: 180px;
+
+    scrollbar-width: thin;
+
+    scrollbar-color:
+        rgba(102, 112, 133, .38)
+        transparent;
+
+    z-index: 1;
 }
 
 
@@ -526,6 +534,12 @@ svg {
 
 .chat-bottom {
 
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
     width: 100%;
 
     display: flex;
@@ -539,11 +553,33 @@ svg {
         32px
         20px;
 
-    flex-shrink: 0;
+    z-index: 10;
 
     will-change: transform;
 }
 
+.chat-area::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-area::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.chat-area::-webkit-scrollbar-thumb {
+    background: rgba(102, 112, 133, .38);
+    border-radius: 999px;
+}
+
+.chat-area::-webkit-scrollbar-thumb:hover {
+    background: rgba(102, 112, 133, .50);
+}
+
+.chat-area::-webkit-scrollbar-button {
+    display: none;
+    width: 0;
+    height: 0;
+}
 
 .input-wrapper {
 
