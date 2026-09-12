@@ -459,70 +459,53 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================
-       MOBILE KEYBOARD
-    ========================================== */
+    MOBILE KEYBOARD
+    ========================================= */
 
     if (window.visualViewport) {
 
-        let lastKeyboardHeight = 0;
+        function updateKeyboardPosition() {
+
+            if (window.innerWidth > 640) {
+                return;
+            }
+
+            const viewport =
+                window.visualViewport;
+
+            const keyboardHeight =
+                Math.max(
+                    0,
+                    window.innerHeight -
+                    viewport.height -
+                    viewport.offsetTop
+                );
+
+            chatBottom.style.bottom =
+                `${keyboardHeight}px`;
+        }
 
 
         window.visualViewport.addEventListener(
             "resize",
-            () => {
-
-                if (window.innerWidth > 640) {
-                    return;
-                }
-
-
-                const keyboardHeight =
-                    Math.max(
-                        0,
-                        window.innerHeight -
-                        window.visualViewport.height
-                    );
-
-
-                if (
-                    Math.abs(
-                        keyboardHeight -
-                        lastKeyboardHeight
-                    ) < 8
-                ) {
-
-                    return;
-
-                }
-
-
-                lastKeyboardHeight =
-                    keyboardHeight;
-
-
-                if (keyboardHeight > 100) {
-
-                    chatBottom.style.transform =
-                        `translate3d(
-                            0,
-                            -${keyboardHeight}px,
-                            0
-                        )`;
-
-                } else {
-
-                    chatBottom.style.transform =
-                        "translate3d(0, 0, 0)";
-
-                }
-
-            },
+            updateKeyboardPosition,
             {
                 passive: true
             }
         );
-    }
 
+
+        window.visualViewport.addEventListener(
+            "scroll",
+            updateKeyboardPosition,
+            {
+                passive: true
+            }
+        );
+
+
+        updateKeyboardPosition();
+    }
 
     /* =========================================
        ESCAPE

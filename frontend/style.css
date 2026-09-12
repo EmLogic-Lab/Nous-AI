@@ -573,7 +573,7 @@ svg {
 
 .chat-area::-webkit-scrollbar-thumb:hover {
     background: rgba(102, 112, 133, .50);
-}
+}d
 
 .chat-area::-webkit-scrollbar-button {
     display: none;
@@ -978,15 +978,10 @@ body.sidebar-collapsed
 .user-message,
 .assistant-message {
 
-    width: 100%;
-
     max-width: 820px;
 
     margin:
         0 auto 16px;
-
-    padding:
-        14px 18px;
 
     font-size: 15px;
 
@@ -998,13 +993,18 @@ body.sidebar-collapsed
 
 .user-message {
 
-    color: var(--text);
+    width: fit-content;
 
-    text-align: right;
-}
+    max-width: min(
+        820px,
+        calc(100% - 36px)
+    );
 
+    margin-left: auto;
+    margin-right: 18px;
 
-.assistant-message {
+    padding:
+        12px 16px;
 
     color: var(--text);
 
@@ -1015,11 +1015,32 @@ body.sidebar-collapsed
     border:
         1px solid var(--border);
 
-    border-radius: 16px;
+    border-radius: 18px;
 
     box-shadow:
-        0 4px 16px
-        rgba(15, 23, 42, .04);
+        0 4px 14px
+        rgba(15, 23, 42, .05);
+}
+
+
+.assistant-message {
+
+    width: 100%;
+
+    padding:
+        4px 18px;
+
+    color: var(--text);
+
+    text-align: left;
+
+    background: transparent;
+
+    border: 0;
+
+    border-radius: 0;
+
+    box-shadow: none;
 }
 
 /* =========================================
@@ -1354,11 +1375,13 @@ body.sidebar-collapsed
 
     .chat-bottom {
 
-        position: absolute;
+        position: fixed;
 
         left: 0;
         right: 0;
         bottom: 0;
+
+        width: 100%;
 
         padding:
             0
@@ -1374,6 +1397,10 @@ body.sidebar-collapsed
                 transparent,
                 var(--bg) 22px
             );
+
+        z-index: 20;
+
+        will-change: bottom;
     }
 
 
